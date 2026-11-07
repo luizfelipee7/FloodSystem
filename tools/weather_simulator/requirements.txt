@@ -1,0 +1,2 @@
+# IANA time zones on Windows; required only for local-date source downloads.
+tzdata==2026.5

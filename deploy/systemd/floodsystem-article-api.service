@@ -1,0 +1,27 @@
+[Unit]
+Description=FloodSystem public weather experiments API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=floodarticle
+Group=floodarticle
+WorkingDirectory=/srv/floodsystem/article-app
+Environment=FLOODSYSTEM_ENV=development
+Environment=FLOODSYSTEM_DB_PATH=/srv/floodsystem/article-data/article-simulations.db
+Environment=FLOODSYSTEM_ENABLE_ARTICLE_SIMULATIONS=true
+Environment=PYTHONDONTWRITEBYTECODE=1
+UMask=0077
+ExecStart=/srv/floodsystem/.venv/bin/uvicorn backend.app.article_public:app --host 127.0.0.1 --port 8010 --proxy-headers --forwarded-allow-ips 127.0.0.1
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+RestrictAddressFamilies=AF_UNIX AF_INET
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,60 @@
+# Chaves privadas e credenciais locais
+PrivateKey/
+privatekey/
+*.key
+*.pem
+
+# Configuração local; exemplos sem segredos podem ser versionados
+.env
+.env.*
+!.env.example
+!.env.*.example
+firmware/esp32_pluviometro/config.h
+
+# SQLite e arquivos auxiliares de transações
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+
+# Python
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Dependências e artefatos do frontend
+node_modules/
+dist/
+frontend/.preview/
+frontend/dist-article/
+experiments/artifacts/
+artigo/
+.work/
+.logs/
+Historico_Tecnico_TCC_FloodSystem.txt
+docs/adaptacao-rsd-2026-10-20.md
+docs/revisao-rsd-2026-10-26.md
+docs/consolidado-projeto-floodsystem-artigo.md
+docs/artigo-ricss-ensaio-computacional-rascunho.md
+docs/auditoria-artigo-ricss-2026-10-18.md
+coverage/
+*.tsbuildinfo
+
+# Logs e arquivos do sistema operacional
+*.log
+.deploy/
+backups/
+.DS_Store
+Thumbs.db

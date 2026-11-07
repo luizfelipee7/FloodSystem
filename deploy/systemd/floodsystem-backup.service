@@ -1,0 +1,14 @@
+[Unit]
+Description=Consistent SQLite backup for FloodSystem
+After=floodsystem-api.service
+
+[Service]
+Type=oneshot
+User=root
+UMask=0077
+ExecStart=/usr/bin/python3 /srv/floodsystem/deploy/sqlite_backup.py backup /srv/floodsystem/database/production.db /var/backups/floodsystem
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/backups/floodsystem

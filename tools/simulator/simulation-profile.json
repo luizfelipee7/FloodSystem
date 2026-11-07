@@ -1,0 +1,9 @@
+{
+  "profile_id": "mvp-synthetic-v1",
+  "simulation_only": true,
+  "device_id": "simulador-01",
+  "origin": "simulation",
+  "valid_from": "2026-01-01T00:00:00Z",
+  "h0_cm": 30.0,
+  "k_mm_per_tip": 0.2
+}

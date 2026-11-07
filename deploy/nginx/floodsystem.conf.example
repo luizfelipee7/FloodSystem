@@ -1,0 +1,38 @@
+# Replace DOMAIN.example and /srv/floodsystem with deployment values.
+# Obtain a certificate before enabling the 443 server block.
+server {
+    listen 80;
+    server_name DOMAIN.example;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name DOMAIN.example;
+    server_tokens off;
+
+    ssl_certificate /etc/letsencrypt/live/DOMAIN.example/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/DOMAIN.example/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    root /srv/floodsystem/frontend/dist;
+    index index.html;
+    client_max_body_size 256k;
+
+    location /api/ {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    location = /health {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
